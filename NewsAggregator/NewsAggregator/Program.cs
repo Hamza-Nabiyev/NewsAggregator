@@ -1,5 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using NewsAggregator;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<NewsAggregatorDbContext>((options) =>
+                options.UseNpgsql(builder.Configuration.GetConnectionString("NewsAggregatorDB")));
 // Add services to the container.
 
 builder.Services.AddControllers();
